@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import ru.reim.spring_boot_crud.models.User;
 import ru.reim.spring_boot_crud.service.UserServiceImpl;
@@ -39,7 +41,7 @@ public class UserController {
         return "redirect:/users";
     }
 
-    @PostMapping("/user-delete/{id}")
+    @DeleteMapping("/user-delete/{id}")
     public String deleteUser(@PathVariable("id") Long id){
         userService.deleteById(id);
         return "redirect:/users";
@@ -52,7 +54,7 @@ public class UserController {
         return "user-update";
     }
 
-    @PostMapping("/user-update")
+    @PutMapping("/user-update")
     public String updateUser(User user) {
         userService.saveUser(user);
         return "redirect:/users";
